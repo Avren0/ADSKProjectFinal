@@ -1,0 +1,35 @@
+---
+  - name: "Install JRE"
+    yum:
+      name: java-1.8.0-openjdk
+      state: present
+  - name: "Create new path"
+    file:
+      path: /opt/HWApp
+      state: directory
+  - name: "Copy HWApp .jar to machine"
+    copy:
+      src: "{{hw_jar_location}}"
+      dest: "{{hw_app_location}}"
+  - name: "Create user for service"
+    user:
+      name: "{{app_user}}"
+  - name: "Copy config to machine"
+    template:
+      src: template/HWApp.service
+      dest: /etc/systemd/system/HWApp.service
+  - name: "Run HWApp service"
+    systemd:
+      name: "HWApp.service"
+      enabled: yes
+      state: restarted
+  - name: "Install telegraf"
+    yum:
+      name: https://dl.influxdata.com/telegraf/releases/telegraf-1.8.3-1.x86_64.rpm
+      state: present
+  - template:
+      src: template/telegraf.conf
+      dest: /etc/telegraf/telegraf.conf
+  - service:
+      name: telegraf
+      state: restarted

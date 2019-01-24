@@ -1,0 +1,12 @@
+[Unit]
+Description=HelloWorld app
+After=network-online.target
+
+[Service]
+Type=simple
+User=HWAppUser
+ExecStart=/usr/bin/java -jar {{hw_app_location}}
+Restart=always
+
+[Install]
+WantedBy=multi-user.target
