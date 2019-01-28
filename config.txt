@@ -1,0 +1,21 @@
+1:
+Pub: 52.59.228.72
+Priv: 172.31.25.214
+2:
+Pub: 18.184.142.232
+Priv: 172.31.26.193
+3:
+Pub: 35.157.12.167
+Priv: 172.31.24.100
+
+Hosts.ini:
+hw_app_nodes 1 Pub
+proxy_nodes 2 Pub
+metrics_storage 3 Pub
+
+install.yml:
+metrics_storage_ip 3 Priv
+server_name 2 Pub
+
+my_ngins.conf
+server 1 Priv

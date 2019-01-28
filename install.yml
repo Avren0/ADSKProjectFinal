@@ -5,12 +5,12 @@
     hw_jar_location: ../demo/target/demo-0.0.1-SNAPSHOT.jar
     hw_app_location: /opt/HWApp/HWApp.jar
     app_user: HWAppUser
-    metrics_storage_ip: 172.31.28.252
+    metrics_storage_ip: 172.31.24.100
   tasks:
     - include_tasks: tasks/app.yml
 - hosts: proxy_nodes
   become: yes
   vars:
-    server_name: 18.184.123.153
+    server_name: 18.184.142.232
   tasks:
     - include_tasks: tasks/proxy.yml
